@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskMaster</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fdfdfd;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 36px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 5px;
+            color: #202124;
+        }
+        h2 {
+            font-size: 18px;
+            font-weight: 500;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #5f6368;
+        }
+        #progress-bar {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        #progress-bar-fill {
+            height: 10px;
+            background-color: #4285f4;
+            width: 0%;
+        }
+        .badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 50px;
+            background-color: #4285f4;
+            color: #fff;
+            margin: 5px;
+            font-weight: bold;
+        }
+        .task-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .task-item:last-child {
+            border-bottom: none;
+        }
+        .task-item label {
+            flex-grow: 1;
+            color: #202124;
+        }
+        .btn-primary {
+            background-color: #ea4335;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            margin: 5px;
+        }
+        .btn-primary:hover {
+            background-color: #d93025;
+        }
+        .delete-task {
+            cursor: pointer;
+            color: #ea4335;
+            margin-left: 10px;
+        }
+        .delete-task:hover {
+            color: #d93025;
+        }
+        .previous-tasks-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #ea4335;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        .previous-tasks-btn:hover {
+            background-color: #d93025;
+        }
+        .previous-tasks-popup {
+            position: fixed;
+            bottom: 70px;
+            right: 20px;
+            width: 300px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: none;
+            flex-direction: column;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>TaskMaster</h1>
+        <h2>Simplify your complex tasks with ease</h2>
+        <div id="progress-bar">
+            <div id="progress-bar-fill"></div>
+        </div>
+        <div id="badges" class="flex justify-center mb-6"></div>
+        <form id="task-form">
+            <div class="mb-4">
+                <label for="task" class="block text-gray-700 text-sm font-bold mb-2">Enter your complex task:</label>
+                <input type="text" id="task" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Your complex task">
+            </div>
+            <div class="flex justify-center">
+                <button type="submit" class="btn-primary">Break Down Task</button>
+                <button type="button" class="btn-primary previous-tasks-btn" onclick="togglePreviousTasks()">History</button>
+            </div>
+        </form>
+        <div id="task-list" class="mt-4"></div>
+    </div>
+    <div class="previous-tasks-popup" id="previous-tasks-popup">
+        <h2>Previous Tasks</h2>
+        <div id="previous-tasks-list"></div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
